@@ -1,6 +1,7 @@
 from flask import Flask, request
 from flask_restful import Resource, Api, reqparse
 from flask_jwt import JWT, jwt_required
+from db import db
 
 from security import authenticate, identity
 from resources.user import UserRegister
@@ -33,6 +34,5 @@ api.add_resource(UserRegister, '/register')
 # however, if we access this file from another file by importing it, this piece of code will not be run
 
 if __name__ == '__main__':
-  from db import db
   db.init_app(app)
   app.run(port=5000, debug=True)
