@@ -1,6 +1,6 @@
 from flask import Flask, request
-from flask_restful import Resource, Api, reqparse
-from flask_jwt import JWT, jwt_required
+from flask_restful import Api
+from flask_jwt import JWT
 from db import db
 
 from security import authenticate, identity
@@ -17,9 +17,9 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'enric'
 api = Api(app)
 
-@app.before_first_request
-def create_table():
-  db.create_all()
+# @app.before_first_request
+# def create_table():
+#   db.create_all()
 
 jwt = JWT(app, authenticate, identity) # /auth
 
